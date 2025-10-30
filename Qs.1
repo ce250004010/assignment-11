@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int size = 100;
+    double* sales = new double[size];
+
+    for (int i = 0; i < size; i++) {
+        sales[i] = i ;
+    }
+
+    cout << "Original array size: " << size << endl;
+
+    int newSize = 200;
+    double* newSales = new double[newSize];
+
+    for (int i = 0; i < size; i++) {
+        newSales[i] = sales[i];
+    }
+
+    for (int i = size; i < newSize; i++) {
+        newSales[i] = 0.0;
+    }
+    delete[] sales;
+
+    sales = newSales;
+    size = newSize;
+
+    cout << "Array resized to: " << size << endl;
+
+
+    delete[] sales;
+
+    return 0;
+}
