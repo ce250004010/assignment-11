@@ -1,0 +1,69 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+struct Student {
+    string name;
+    int age;
+    string gender;
+    string branch;
+};
+
+int main() {
+    int size = 100;
+
+    
+    Student* students = new Student[size];
+
+    for (int i = 0; i < size; i++) {
+        students[i].name = "Student_" + to_string(i + 1);
+        students[i].age = 18 + (i % 5); 
+        students[i].gender = (i % 2 == 0) ? "Male" : "Female";
+        students[i].branch = (i % 2 == 0) ? "CSE" : "ECE";
+    }
+
+    cout << "First 3 Students (Array size = 100):\n";
+    for (int i = 0; i < 3; i++) {
+        cout << students[i].name << " | " 
+             << students[i].age << " | "
+             << students[i].gender << " | "
+             << students[i].branch << endl;
+    }
+
+    cout << "Current size: " << size << endl;
+
+    int newSize = 200;
+    Student* newStudents = new Student[newSize];
+
+    for (int i = 0; i < size; i++) {
+        newStudents[i] = students[i];
+    }
+
+    for (int i = size; i < newSize; i++) {
+        newStudents[i].name = "New_Student_" + to_string(i + 1);
+        newStudents[i].age = 18;
+        newStudents[i].gender = "Unknown";
+        newStudents[i].branch = "Undeclared";
+    }
+
+ 
+    delete[] students;
+    students = newStudents;
+    size = newSize;
+
+    cout << "\nArray resized successfully!\n";
+    cout << "First 3 Students after resizing (Array size = 200):\n";
+    for (int i = 0; i < 3; i++) {
+        cout << students[i].name << " | " 
+             << students[i].age << " | "
+             << students[i].gender << " | "
+             << students[i].branch << endl;
+    }
+
+    cout << "New size: " << size << endl;
+
+    delete[] students;
+
+    return 0;
+}
