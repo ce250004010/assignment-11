@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+char str[101]; 
+char seq[4]; 
+int found = 0;
+
+cout << "Enter a string (max 100 chars): ";
+cin.getline(str, 101);
+
+cout << "Enter a sequence of 3 characters: ";
+cin.getline(seq, 4);
+
+
+for (int i = 0; str[i] != '\0'; i++) {
+if (str[i] == seq[0] &&
+str[i+1] == seq[1] &&
+str[i+2] == seq[2]) {
+found = 1;
+break;
+}
+}
+
+if (found)
+cout << "Sequence found in the string." << endl;
+else
+cout << "Sequence not found." << endl;
+
+return 0;
+}
+
